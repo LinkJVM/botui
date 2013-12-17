@@ -32,7 +32,7 @@
    <item>
     <widget class="QLabel" name="deviceName">
      <property name="styleSheet">
-      <string notr="true">font: 75 35pt &quot;Courier&quot;;</string>
+      <string notr="true">font: 35 20pt &quot;Courier&quot;;</string>
      </property>
      <property name="text">
       <string>Device Name</string>
