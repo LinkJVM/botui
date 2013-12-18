@@ -30,6 +30,19 @@
     <number>0</number>
    </property>
    <item>
+    <widget class="QLabel">
+     <property name="styleSheet">
+      <string notr="true">font: 25 150pt &quot;Courier&quot;;</string>
+     </property>
+     <property name="text">
+      <string>LinkJVM DevelopmentBuild 1.2.0-r46</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+   </widget>
+  </item>
+  <item>
     <widget class="QLabel" name="deviceName">
      <property name="styleSheet">
       <string notr="true">font: 35 20pt &quot;Courier&quot;;</string>
