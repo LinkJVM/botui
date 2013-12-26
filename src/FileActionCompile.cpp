@@ -19,7 +19,7 @@
 #include <QDebug>
 
 FileActionCompile::FileActionCompile()
-	: FileActionExtension("Compile", QStringList() << "c" << "cpp" << "cc" << "cxx")
+	: FileActionExtension("Compile", QStringList() << "c" << "cpp" << "cc" << "cxx" << "java")
 {
 	qRegisterMetaType<Compiler::OutputList>("Compiler::OutputList");
 }
