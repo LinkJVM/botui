@@ -115,6 +115,13 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
+           <string>Markus Klein</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
            <string>Braden McDorman</string>
           </property>
          </widget>
