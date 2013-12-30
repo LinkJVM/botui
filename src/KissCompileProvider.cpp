@@ -59,7 +59,7 @@ Compiler::OutputList KissCompileProvider::compile(const QString &name, const Kis
 		success &= out.isSuccess();
 	}
 	
-	QString result = QDir(binariesPath()).filePath(name);
+	QString result = QDir(binariesPath()).filePath(name) + "." + QFileInfo(terminalFiles[0]).completeSuffix();
 	QFile::remove(result);
 	
 	if(!success) return ret;
