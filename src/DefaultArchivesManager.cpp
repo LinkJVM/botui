@@ -70,13 +70,13 @@ QString DefaultArchivesManager::command(const QString &name) const {
 	return ret;
 }
 
-QString DefaultArchivesManager::binaryExtension(const QString& name){
+QString DefaultArchivesManager::binaryExtension(const QString& name) const{
 	switch(programType(name)){
 		case 1: return ".class";
 		default: return "";
 	}
 }
 
-QString DefaultArchivesManager::programType(const QString& name){
-	return programType = archive(name)->getPreference("program_type").toInt();
+int DefaultArchivesManager::programType(const QString& name) const{
+	return archive(name)->getPreference("program_type").toInt();
 }

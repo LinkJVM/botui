@@ -23,7 +23,7 @@ public:
 	
 private:	
 	virtual QString binaryPath(const QString &name) const;
-	QString programType(const QString& name) const;
+	int programType(const QString& name) const;
 	
 	QString m_archivesPath;
 	QString m_binariesPath;
