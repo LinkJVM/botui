@@ -1,18 +1,27 @@
 #include "Program.h"
 #include <kovan/general.h>
 
+#include <QProcessEnvironment>
 #include <QDebug>
+#include <QMap>
+
+Programm::Program(){
+	m_processEnvironment.insert("BOOTCLASSPATH", "/usr/share/jamvm/classes.zip:/usr/share/classpath/glibj.zip:/usr/lib/linkjvm-java.jar:/usr/share/classpath/tools.zip");
+	m_processEnvironment.insert("CLASSPATH", "/usr/share/jamvm/classes.zip:/usr/share/classpath/glibj.zip:/usr/lib/linkjvm-java.jar:/usr/share/classpath/tools.zip:.");
+	m_processEnvironment.insert("LD_LIBRARY_PATH", "/usr/lib/classpath");
+}
 
 Program::~Program()
 {
 	stop();
 }
 
-bool Program::start(const QString& path, const QStringList &arguments)
+bool Program::start(const QString& command, const QStringList &arguments)
 {
 	if(path.isEmpty()) return false;
 	stop();
 	m_process = new QProcess(this);
+	m_process->setProcessEnvironment(m_processEnvironment);
 	m_process->setProcessChannelMode(QProcess::MergedChannels);
 	connect(m_process, SIGNAL(finished(int, QProcess::ExitStatus)), SIGNAL(finished(int, QProcess::ExitStatus)));
 	connect(m_process, SIGNAL(readyRead()), SIGNAL(readyRead()));
@@ -20,7 +29,7 @@ bool Program::start(const QString& path, const QStringList &arguments)
 	set_auto_publish(true);
 	halt();
 	set_auto_publish(false);
-	
+		
 	m_process->start(path, arguments);
 	if(!m_process->waitForStarted()) {
 		delete m_process;

@@ -5,11 +5,13 @@
 #include <QStringList>
 #include <QProcess>
 #include <QTime>
+#include <QProcessEnvironment>
 
 class Program : public QObject
 {
 Q_OBJECT
 public:
+	Program();
 	~Program();
 	
 	bool isRunning();
@@ -31,6 +33,7 @@ private:
 	Program(const Program& rhs);
 	
 	QProcess *m_process;
+	QProcess m_processEnvironment;
 	QTime m_time;
 };
 

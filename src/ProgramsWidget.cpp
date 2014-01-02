@@ -89,7 +89,7 @@ void ProgramsWidget::run()
 	}
 	
 	ProgramWidget *programWidget = new ProgramWidget(Program::instance(), device());
-	if(!Program::instance()->start(device()->archivesManager()->binaryPath(name),
+	if(!Program::instance()->start(device()->archivesManager()->command(name),
 		ProgramArguments::arguments(device()->archivesManager()->archive(name)))) {
 		delete programWidget;
 	} else {

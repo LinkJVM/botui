@@ -60,3 +60,12 @@ QString DefaultArchivesManager::archivePath(const QString &name) const
 {
 	return QDir(m_archivesPath).filePath(name);
 }
+
+QString DefaultArchivesManager::command(const QString &name) const {
+	int programType = archive(name)->getPreference("program_type").toInt();
+	QString ret;
+	switch(programType){
+		case 1: ret.append("java -jar");
+	}
+	return ret.append(" " + binaryPath());
+}

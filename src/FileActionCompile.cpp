@@ -46,6 +46,9 @@ bool FileActionCompile::act(const QString &path, Device *device) const
 		return false;
 	}
 	archive->addFile(input.fileName(), inputFile.readAll());
+	if(input.completeSuffix() == "java"){
+		archive->addPreference("program_type", "1")
+	}
 	inputFile.close();
 	
 	// Add this program to the virtual filesystem
