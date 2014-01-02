@@ -47,7 +47,7 @@ bool FileActionCompile::act(const QString &path, Device *device) const
 	}
 	archive->addFile(input.fileName(), inputFile.readAll());
 	if(input.completeSuffix() == "java"){
-		archive->addPreference("program_type", "1")
+		archive->addPreference("program_type", "1");
 	}
 	inputFile.close();
 	
