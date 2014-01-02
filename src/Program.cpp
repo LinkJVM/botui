@@ -5,12 +5,6 @@
 #include <QDebug>
 #include <QMap>
 
-Programm::Program(){
-	m_processEnvironment.insert("BOOTCLASSPATH", "/usr/share/jamvm/classes.zip:/usr/share/classpath/glibj.zip:/usr/lib/linkjvm-java.jar:/usr/share/classpath/tools.zip");
-	m_processEnvironment.insert("CLASSPATH", "/usr/share/jamvm/classes.zip:/usr/share/classpath/glibj.zip:/usr/lib/linkjvm-java.jar:/usr/share/classpath/tools.zip:.");
-	m_processEnvironment.insert("LD_LIBRARY_PATH", "/usr/lib/classpath");
-}
-
 Program::~Program()
 {
 	stop();
@@ -75,6 +69,9 @@ Program *Program::instance()
 Program::Program()
 	: m_process(0)
 {
+	m_processEnvironment.insert("BOOTCLASSPATH", "/usr/share/jamvm/classes.zip:/usr/share/classpath/glibj.zip:/usr/lib/linkjvm-java.jar:/usr/share/classpath/tools.zip");
+	m_processEnvironment.insert("CLASSPATH", "/usr/share/jamvm/classes.zip:/usr/share/classpath/glibj.zip:/usr/lib/linkjvm-java.jar:/usr/share/classpath/tools.zip:.");
+	m_processEnvironment.insert("LD_LIBRARY_PATH", "/usr/lib/classpath");
 	m_time.start();
 }
 

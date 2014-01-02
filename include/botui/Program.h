@@ -11,7 +11,6 @@ class Program : public QObject
 {
 Q_OBJECT
 public:
-	Program();
 	~Program();
 	
 	bool isRunning();
