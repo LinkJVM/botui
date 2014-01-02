@@ -7,8 +7,8 @@
 class ProgramArguments
 {
 public:
-	static void setArguments(const Kiss::KarPtr &archive, const QStringList &arguments);
-	static QStringList arguments(const Kiss::KarPtr &archive);
+	static void setArguments(const kiss::KarPtr &archive, const QStringList &arguments);
+	static QStringList arguments(const kiss::KarPtr &archive);
 };
 
 #endif

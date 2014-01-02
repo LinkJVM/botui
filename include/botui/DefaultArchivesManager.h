@@ -13,9 +13,9 @@ public:
 		QObject *parent);
 	
 	virtual QStringList archives() const;
-	virtual Kiss::KarPtr archive(const QString &name) const;
+	virtual kiss::KarPtr archive(const QString &name) const;
 	virtual bool hasBinary(const QString &name) const;
-	virtual bool set(const QString &name, const Kiss::KarPtr &archive);
+	virtual bool set(const QString &name, const kiss::KarPtr &archive);
 	virtual bool remove(const QString &name);
 	QString archivePath(const QString &name) const;
 	virtual QString command(const QString &name) const; 

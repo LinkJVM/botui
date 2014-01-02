@@ -13,7 +13,7 @@ FileActionEditKar::FileActionEditKar()
 
 bool FileActionEditKar::canHandle(const QString &path) const
 {
-	return Kiss::Kar::isValid(path);
+	return kiss::Kar::isValid(path);
 }
 
 bool FileActionEditKar::act(const QString &path, Device *device) const

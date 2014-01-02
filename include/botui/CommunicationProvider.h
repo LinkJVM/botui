@@ -16,7 +16,7 @@ public:
 	void setDevice(Device *device);
 	Device *device() const;
 signals:
-	void programReceived(const Kiss::KarPtr& archive);
+	void programReceived(const kiss::KarPtr& archive);
 	
 private:
 	Device *m_device;

@@ -46,7 +46,7 @@ const QString &EditorWidget::savePath() const
 	return m_savePath;
 }
 
-void EditorWidget::setArchive(const Kiss::KarPtr &archive)
+void EditorWidget::setArchive(const kiss::KarPtr &archive)
 {
 	m_lookup.clear();
 	ui->files->clear();
@@ -62,7 +62,7 @@ void EditorWidget::setArchive(const Kiss::KarPtr &archive)
 	ui->text->setPlainText(m_archive->data(m_lookup[0]));
 }
 
-const Kiss::KarPtr &EditorWidget::archive() const
+const kiss::KarPtr &EditorWidget::archive() const
 {
 	return m_archive;
 }
