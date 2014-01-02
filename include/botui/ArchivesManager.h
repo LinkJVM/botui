@@ -17,6 +17,7 @@ public:
 	virtual bool set(const QString &name, const Kiss::KarPtr &archive) = 0;
 	virtual bool remove(const QString &name) = 0;
 	virtual QString command(const QString &name) const = 0;
+	virtual QString binaryExtention(const QString &name) const = 0;
 	
 private:
 	virtual QString binaryPath(const QString &name) const = 0;
