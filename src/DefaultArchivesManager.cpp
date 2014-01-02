@@ -66,7 +66,7 @@ QString DefaultArchivesManager::command(const QString &name) const {
 	switch(programType(name)){
 		case 1: ret.append("java ");
 	}
-	ret.append(" " + binaryPath(name))
+	ret.append(" " + binaryPath(name));
 	return ret;
 }
 
