@@ -19,7 +19,7 @@ public:
 	virtual bool remove(const QString &name);
 	QString archivePath(const QString &name) const;
 	virtual QString command(const QString &name) const; 
-	virtual QString binaryExtention(const QString &name) const;
+	virtual QString binaryExtension(const QString &name) const;
 	
 private:	
 	virtual QString binaryPath(const QString &name) const;

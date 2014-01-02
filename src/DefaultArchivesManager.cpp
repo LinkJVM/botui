@@ -62,14 +62,16 @@ QString DefaultArchivesManager::archivePath(const QString &name) const
 }
 
 QString DefaultArchivesManager::command(const QString &name) const {
-	switch(programType()){
+	QString ret;
+	switch(programType(name)){
 		case 1: ret.append("java ");
 	}
-	return ret.append(" " + binaryPath());
+	ret.append(" " + binaryPath(name))
+	return ret;
 }
 
 QString DefaultArchivesManager::binaryExtension(const QString& name){
-	switch(programType()){
+	switch(programType(name)){
 		case 1: return ".class";
 		default: return "";
 	}
