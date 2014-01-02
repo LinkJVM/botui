@@ -24,7 +24,7 @@ KissCompileProvider::KissCompileProvider(Device *device, QObject *parent)
 {
 }
 
-Compiler::OutputList KissCompileProvider::compile(const QString &name, const Kiss::KarPtr &program)
+Compiler::OutputList KissCompileProvider::compile(const QString &name, const kiss::KarPtr &program)
 {
 	if(program.isNull()) {
 		return OutputList() << Output(name, 1,
