@@ -11,10 +11,10 @@ public:
 	ArchivesManager(QObject *parent = 0);
 	
 	virtual QStringList archives() const = 0;
-	virtual Kiss::KarPtr archive(const QString &name) const = 0;
+	virtual kiss::KarPtr archive(const QString &name) const = 0;
 	virtual QString archivePath(const QString &name) const = 0;
 	virtual bool hasBinary(const QString &name) const = 0;
-	virtual bool set(const QString &name, const Kiss::KarPtr &archive) = 0;
+	virtual bool set(const QString &name, const kiss::KarPtr &archive) = 0;
 	virtual bool remove(const QString &name) = 0;
 	virtual QString command(const QString &name) const = 0;
 	virtual QString binaryExtention(const QString &name) const = 0;
