@@ -20,7 +20,7 @@ bool FileActionEditKar::act(const QString &path, Device *device) const
 {
 	EditorWidget *editor = new EditorWidget(device);
 	editor->setSavePath(path);
-	editor->setArchive(Kiss::Kar::load(path));
+	editor->setArchive(kiss::Kar::load(path));
 	RootController::ref().presentWidget(editor);
 	return true;
 }
