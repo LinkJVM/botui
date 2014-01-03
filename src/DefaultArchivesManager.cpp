@@ -30,7 +30,7 @@ kiss::KarPtr DefaultArchivesManager::archive(const QString &name) const
 
 QString DefaultArchivesManager::binaryPath(const QString &name) const
 {
-	return QDir(m_binariesPath).filePath(name + binaryExtension());
+	return QDir(m_binariesPath).filePath(name + binaryExtension(name));
 }
 
 bool DefaultArchivesManager::hasBinary(const QString &name) const
@@ -64,7 +64,7 @@ QString DefaultArchivesManager::archivePath(const QString &name) const
 QString DefaultArchivesManager::command(const QString &name) const {
 	switch(programType(name)){
 		case 1: return "java -jar " + binaryPath(name);
-		default: return binaryPath();
+		default: return binaryPath(name);
 	}
 }
 
