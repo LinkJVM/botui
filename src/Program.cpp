@@ -12,7 +12,7 @@ Program::~Program()
 
 bool Program::start(const QString& command, const QStringList &arguments)
 {
-	if(path.isEmpty()) return false;
+	if(command.isEmpty()) return false;
 	stop();
 	m_process = new QProcess(this);
 	m_process->setProcessEnvironment(m_processEnvironment);
@@ -24,7 +24,7 @@ bool Program::start(const QString& command, const QStringList &arguments)
 	halt();
 	set_auto_publish(false);
 		
-	m_process->start(path, arguments);
+	m_process->start(command, arguments);
 	if(!m_process->waitForStarted()) {
 		delete m_process;
 		m_process = 0;
