@@ -1,7 +1,6 @@
 #include "Program.h"
 #include <kovan/general.h>
 
-#include <QProcessEnvironment>
 #include <QDebug>
 #include <QMap>
 

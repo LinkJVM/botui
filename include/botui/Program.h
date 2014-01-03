@@ -32,7 +32,7 @@ private:
 	Program(const Program& rhs);
 	
 	QProcess *m_process;
-	QProcess m_processEnvironment;
+	QProcessEnvironment m_processEnvironment;
 	QTime m_time;
 };
 
