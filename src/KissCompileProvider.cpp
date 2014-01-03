@@ -47,7 +47,7 @@ Compiler::OutputList KissCompileProvider::compile(const QString &name, const kis
 	Options opts = Options::load("/etc/kovan/platform.hints");
 	opts.insert("OUTPUT_DIR", QDir(binariesPath()).filePath(name));
 	Engine engine(Compilers::instance()->compilers());
-	OutputList ret = engine.compile(input, opts);
+	OutputList ret = engine.compile(input, program, opts);
 	
 	QStringList terminalFiles;
 	bool success = true;
