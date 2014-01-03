@@ -45,6 +45,7 @@ Compiler::OutputList KissCompileProvider::compile(const QString &name, const kis
 	
 	Input input = Input::fromList(extracted);
 	Options opts = Options::load("/etc/kovan/platform.hints");
+	opts.insert("OUTPUT_DIR", QDir(binariesPath()).filePath(name));
 	Engine engine(Compilers::instance()->compilers());
 	OutputList ret = engine.compile(input, opts);
 	
