@@ -35,7 +35,7 @@
       <string notr="true">font: 17 10pt &quot;Courier&quot;;</string>
      </property>
      <property name="text">
-      <string>LinkJVM DevelopmentBuild 1.2.0-r46</string>
+      <string>LinkJVM DevelopmentBuild 2.0.0-r9</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
