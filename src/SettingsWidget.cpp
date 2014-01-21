@@ -5,12 +5,14 @@
 #include "StatusBar.h"
 #include "Device.h"
 #include "Calibrate.h"
+#include "Options.h"
 #include "NotYetImplementedDialog.h"
 
 #include "NetworkSettingsWidget.h"
 #include "CommunicationSettingsWidget.h"
 #include "ChannelConfigurationsWidget.h"
 #include "GuiSettingsWidget.h"
+#include "LanguageWidget.h"
 
 #include <QDebug>
 
@@ -21,13 +23,18 @@ SettingsWidget::SettingsWidget(Device *device, QWidget *parent)
 	ui->setupUi(this);
 	performStandardSetup(tr("Settings"));
 	
-	// ui->networkSettings->setEnabled(m_device->networkingProvider());
+  #ifdef NETWORK_ENABLED
+  ui->network->setEnabled(true);
+  #else
+  ui->network->setEnabled(false);
+  #endif
 	
 	connect(ui->network, SIGNAL(clicked()), SLOT(network()));
 	connect(ui->comm, SIGNAL(clicked()), SLOT(comm()));
 	connect(ui->channels, SIGNAL(clicked()), SLOT(channels()));
 	connect(ui->gui, SIGNAL(clicked()), SLOT(gui()));
 	connect(ui->calibrate, SIGNAL(clicked()), SLOT(calibrate()));
+	connect(ui->language, SIGNAL(clicked()), SLOT(language()));
 }
 
 SettingsWidget::~SettingsWidget()
@@ -37,7 +44,9 @@ SettingsWidget::~SettingsWidget()
 
 void SettingsWidget::network()
 {
-	RootController::ref().presentWidget(new NetworkSettingsWidget(device()));
+#ifdef NETWORK_ENABLED
+  RootController::ref().presentWidget(new NetworkSettingsWidget(device()));
+#endif
 }
 
 void SettingsWidget::comm()
@@ -58,4 +67,9 @@ void SettingsWidget::gui()
 void SettingsWidget::calibrate()
 {
 	Calibrate::calibrate();
+}
+
+void SettingsWidget::language()
+{
+  RootController::ref().presentWidget(new LanguageWidget(device()));
 }

@@ -1,7 +1,7 @@
 #include "FileActionCompile.h"
 
 #include "Device.h"
-#include "ArchivesManager.h"
+#include "SystemPrefix.h"
 
 #include "LogDialog.h"
 #include "RootController.h"
@@ -12,14 +12,14 @@
 #include "CompileProvider.h"
 #include "CompileHelpers.h"
 
-#include <kar.hpp>
+#include <kar/kar.hpp>
 #include <QFileInfo>
 #include <QThreadPool>
 
 #include <QDebug>
 
 FileActionCompile::FileActionCompile()
-	: FileActionExtension("Compile", QStringList() << "c" << "cpp" << "cc" << "cxx")
+	: FileActionExtension(QObject::tr("Compile"), QStringList() << "kissproj")
 {
 	qRegisterMetaType<Compiler::OutputList>("Compiler::OutputList");
 }
@@ -32,26 +32,32 @@ bool FileActionCompile::act(const QString &path, Device *device) const
 		qWarning() << "We don't know how to compile a non-file";
 		return false;
 	}
-	if(!device->archivesManager()) {
-		qWarning() << "No archives manager";
-		return false;
-	}
 	
 	// Create a program archive containing the input file
-	
-	Kiss::KarPtr archive = Kiss::Kar::create();
-	QFile inputFile(path);
-	if(!inputFile.open(QIODevice::ReadOnly)) {
-		qWarning() << "QFile::open failed on" << path;
-		return false;
+	kiss::KarPtr archive = kiss::Kar::create(input.path());
+  qDebug() << archive->files();
+  foreach(QString file, archive->files()) {
+    if(!file.endsWith(".kissproj")) continue;
+    const QString old = file;
+    file.replace(".kissproj", ".ops");
+    archive->rename(old, file);
+  }
+  
+	QFile file(":/target.c");
+	if(!file.open(QIODevice::ReadOnly)) {
+		qWarning() << "Failed to inject target.c";
+	} else {
+		archive->setFile("__internal_target___.c", file.readAll());
+		file.close();
 	}
-	archive->addFile(input.fileName(), inputFile.readAll());
-	inputFile.close();
 	
+  const QString name = input.baseName();
 	// Add this program to the virtual filesystem
-	
-	const QString name = input.completeBaseName();
-	device->archivesManager()->set(name, archive);
+  const QString archivePath = SystemPrefix::ref().rootManager()->archivesPath(name);
+  if(!archive->save(archivePath)) {
+		qWarning() << "Archive save failed on" << archivePath;
+		return false;
+  }
 	
 	// Compile the program
 	
@@ -70,7 +76,7 @@ bool FileActionCompile::act(const QString &path, Device *device) const
 	
 	if(!Compiler::Output::isSuccess(compiler.output())) {
 		// Clean up
-		device->archivesManager()->remove(name);
+		SystemPrefix::ref().rootManager()->uninstall(name);
 		return false;
 	}
 	

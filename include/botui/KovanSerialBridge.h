@@ -16,6 +16,7 @@ public:
 	void init(Device *device);
 	
 private slots:
+  void newConnection();
 	void run(const QString &path);
 	
 private:
