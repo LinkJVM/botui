@@ -25,7 +25,7 @@ void CameraInputManager::setSource(const CameraInputManager::Source source)
 		inputProvider = new Camera::UsbInputProvider;
 		break;
 	case CameraInputManager::ARDroneFront:
-		inputProvider = new Camera::ConnectionedARDroneInputProvider;
+		inputProvider = new Camera::DepthInputProvider;
 		break;
 	default: break;
 	}
